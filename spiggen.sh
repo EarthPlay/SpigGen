@@ -58,22 +58,29 @@ function check_dir() {
 }
 
 function directory() {
-    printf 'Please enter a directory: '$blue'('$reset'./'$blue')'$gray' '
+    if [ "$DIRECTORY" == '' ]; then
+        DIRECTORY='./'
+    fi
+
+    printf 'Please enter a directory: '$blue'('$reset"$DIRECTORY"$blue')'$gray' '
     read answer
     if [ "$answer" == '' ]; then
-        directory="./"
+        directory="$DIRECTORY"
     else
         directory="$answer"
     fi
+    
+    export DIRECTORY="$directory"
+
     directory="$(pwd)/$directory"
-    printf $reset'using '$gray$directory$reset'\n\n'
+    printf $reset'using '$gray"$directory"$reset'\n\n'
 
     check_dir
 }
 
 
 function groupid() {
-    printf 'Please enter the group id: '$blue'('$reset$GROUP_ID$blue')'$gray' '
+    printf 'Please enter the group id: '$blue'('$reset"$GROUP_ID"$blue')'$gray' '
     read answer
     if [ "$answer" == '' ]; then
         groupid="$GROUP_ID"
@@ -86,12 +93,14 @@ function groupid() {
         printf '\n'
         groupid
     else
-        printf $reset'using '$gray$groupid$reset'\n\n'
+        printf $reset'using '$gray"$groupid"$reset'\n\n'
     fi
+
+    export GROUP_ID="$groupid"
 }
 
 function artifactid() {
-    printf 'Please enter the artifact id: '$blue'('$reset$ARTIFACT_ID$blue')'$gray' '
+    printf 'Please enter the artifact id: '$blue'('$reset"$ARTIFACT_ID"$blue')'$gray' '
     read answer
     if [ "$answer" == '' ]; then
         artifactid="$ARTIFACT_ID"
@@ -104,12 +113,14 @@ function artifactid() {
         printf '\n'
         artifactid
     else
-        printf $reset'using '$gray$artifactid$reset'\n\n'
+        printf $reset'using '$gray"$artifactid"$reset'\n\n'
     fi
+
+    export ARTIFACT_ID="$artifactid"
 }
 
 function author() {
-    printf 'Please enter the author: '$blue'('$reset$AUTHOR$blue')'$gray' '
+    printf 'Please enter the author: '$blue'('$reset"$AUTHOR"$blue')'$gray' '
     read answer
     if [ "$answer" == '' ]; then
         author="$AUTHOR"
@@ -122,12 +133,14 @@ function author() {
         printf '\n'
         author
     else
-        printf $reset'using '$gray$author$reset'\n\n'
+        printf $reset'using '$gray"$author"$reset'\n\n'
     fi
+
+    export AUTHOR="$author"
 }
 
 function description() {
-    printf 'Please enter the description: '$blue'('$reset$DESCRIPTION$blue')'$gray' '
+    printf 'Please enter the description: '$blue'('$reset"$DESCRIPTION"$blue')'$gray' '
     read answer
     if [ "$answer" == '' ]; then
         description="$DESCRIPTION"
@@ -135,15 +148,17 @@ function description() {
         description="$answer"
     fi
 
-    printf $reset'using '$gray$description$reset'\n\n'
+    printf $reset'using '$gray"$description"$reset'\n\n'
+
+    export DESCRIPTION="$description"
 }
 
 function confirm() {
-    printf 'Directory: '$orange$directory$reset'\n'
-    printf 'Group id: '$orange$groupid$reset'\n'
-    printf 'Artifact id: '$orange$artifactid$reset'\n'
-    printf 'Author: '$orange$author$reset'\n'
-    printf 'Description: '$orange$description$reset'\n\n'
+    printf 'Directory: '$orange"$directory"$reset'\n'
+    printf 'Group id: '$orange"$groupid"$reset'\n'
+    printf 'Artifact id: '$orange"$artifactid"$reset'\n'
+    printf 'Author: '$orange"$author"$reset'\n'
+    printf 'Description: '$orange"$description"$reset'\n\n'
     printf $yellow'WARNING'$reset' Are you sure?\n'
     printf '['$orange'Y'$reset'/'$gray'n'$reset']: '
 
@@ -160,11 +175,11 @@ function generate() {
 
     lartifactid=${artifactid,,}
 
-    find $directory -type f -exec sed -i 's/%%%groupid%%%/'$groupid'/g' {} +
-    find $directory -type f -exec sed -i 's/%%%artifactid%%%/'$artifactid'/g' {} +
-    find $directory -type f -exec sed -i 's/%%%lartifactid%%%/'$lartifactid'/g' {} +
-    find $directory -type f -exec sed -i 's/%%%author%%%/'$author'/g' {} +
-    find $directory -type f -exec sed -i 's/%%%description%%%/'$description'/g' {} +
+    find $directory -type f -exec sed -i 's/%%%groupid%%%/'"$groupid"'/g' {} +
+    find $directory -type f -exec sed -i 's/%%%artifactid%%%/'"$artifactid"'/g' {} +
+    find $directory -type f -exec sed -i 's/%%%lartifactid%%%/'"$lartifactid"'/g' {} +
+    find $directory -type f -exec sed -i 's/%%%author%%%/'"$author"'/g' {} +
+    find $directory -type f -exec sed -i 's/%%%description%%%/'"$description"'/g' {} +
 
     dir="$directory/src/main/java/${groupid//.//}/${lartifactid}"
 

@@ -52,7 +52,6 @@ function print_logo() {
 function uninstall() {
     printf 'Uninstalling...\n'
     sed -i '/SPIGGEN INSTALL/,/# END SPIGGEN INSTALL/d' ~/.bashrc
-    rm spiggen
     printf '\n'
     printf 'Successfully '$red'uninstalled '$reset'SpigGen!\n'
 }
@@ -60,14 +59,12 @@ function uninstall() {
 function install() {
     printf 'Installing...\n'
 
-    if [ ! -f 'spiggen' ]; then
-        ln spiggen.sh spiggen
-    fi
-    chmod +x spiggen
+    chmod +x spiggen.sh
 
     echo '# SPIGGEN INSTALL' >> ~/.bashrc
     echo 'export PATH="'$(pwd)':$PATH"' >> ~/.bashrc
     echo 'export SPIGGEN_TEMPLATE="'$(pwd)'/template"' >> ~/.bashrc
+    echo 'alias spiggen=". spiggen.sh"' >> ~/.bashrc
     echo '# END SPIGGEN INSTALL' >> ~/.bashrc
 
     printf '\n'
