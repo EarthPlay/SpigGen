@@ -171,7 +171,7 @@ function confirm() {
 }
 
 function generate() {
-    cp -R $SPIGGEN_TEMPLATE/* "$directory"
+    cp -R "$SPIGGEN_TEMPLATE/." "$directory"
 
     lartifactid=${artifactid,,}
 
