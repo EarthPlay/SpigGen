@@ -6,12 +6,17 @@ pkgdesc="Kekhafter Spigot Plugin Template Generator"
 arch=("x86_64")
 url="https://github.com/EarthPlay/SpigGen"
 license=('MIT')
-makedepends=('dotnet-sdk' 'git')
+makedepends=('git')
 source=("git+https://github.com/EarthPlay/SpigGen.git")
 sha512sums=('SKIP')
 
 package() {
+mkdir -p "${pkgdir}/etc/"
 mkdir -p "${pkgdir}/usr/bin/"
-cp "${srcdir}/SpigGen/spiggen.sh" "${pkgdir}/usr/bin/spiggen"
-chmod +x "${pkgdir}/usr/bin/spiggen"
+rm -rf "${srcdir}/SpigGen/.git"
+rm -rf "${srcdir}/SpigGen/.vscode"
+mv "${srcdir}/SpigGen" "${srcdir}/spiggen"
+cp -r --verbose "${srcdir}/spiggen/" "${pkgdir}/etc/"
+ln -s "${pkgdir}/etc/spiggen/spiggen.sh" "${pkgdir}/usr/bin/spiggen"
+chmod +x "${pkgdir}/etc/spiggen/spiggen.sh"
 }
