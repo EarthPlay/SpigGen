@@ -8,6 +8,7 @@
 A plugin template generator which allows rappid plugin development.
 ```
 
+<hr>
 <br>
 
 ## Installing
@@ -22,4 +23,16 @@ $ chmod +x install.sh
 2. Execute the install script
 ```sh
 $ ./install.sh
+```
+
+You might have to restart your terminal after installing.
+
+<hr>
+<br>
+
+## Usage
+
+Start SpigGen
+```sh
+$ spiggen
 ```
