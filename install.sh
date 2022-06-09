@@ -20,7 +20,7 @@
 ## █ █░▀█ ▄█ ░█░ █▀█ █▄▄ █▄▄ ▄█ █▄▄ █▀▄ █ █▀▀ ░█░ ##
 ####################################################
 #   This script allows an easy installation and    #
-#           deinstallation of ReSVG.               #
+#          deinstallation of SpigGen.              #
 
 
 version='0.0.0alpha0'
