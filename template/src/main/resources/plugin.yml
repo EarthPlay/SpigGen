@@ -1,0 +1,10 @@
+name: '%%%artifactid%%%'
+version: '${version}'
+main: '%%%groupid%%%.%%%lartifactid%%%.%%%artifactid%%%'
+author: '%%%author%%%'
+description: '%%%description%%%'
+api-version: 1.18
+database: true
+
+libraries:
+  - 'com.zaxxer:HikariCP:5.0.1'

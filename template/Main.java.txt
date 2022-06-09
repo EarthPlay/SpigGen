@@ -1,0 +1,14 @@
+package %%%groupid%%%.%%%lartifactid%%%;
+
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class %%%artifactid%%% extends JavaPlugin {
+    public static %%%artifactid%%% instance;
+
+    @Override
+    public void onEnable() {
+        getLogger().info("%%%artifactid%%% was successfully enabled!");
+
+        instance = this;
+    }
+}

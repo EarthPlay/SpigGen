@@ -1,0 +1,6 @@
+{
+    "yaml.schemas": {
+        "https://json.schemastore.org/bukkit-plugin.json": "file:///hdd/vsprojects/EarthPlay/SpigotGenerator/test/src/main/resources/plugin.yml"
+    },
+    "java.configuration.updateBuildConfiguration": "disabled"
+}
