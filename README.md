@@ -27,6 +27,8 @@ $ ./install.sh
 
 You might have to restart your terminal after installing.
 
+You can also install the package on arch via executing makepkg -si
+
 <hr>
 <br>
 
