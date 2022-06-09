@@ -72,7 +72,6 @@ function directory() {
     
     export DIRECTORY="$directory"
 
-    directory="$(pwd)/$directory"
     printf $reset'using '$gray"$directory"$reset'\n\n'
 
     check_dir
