@@ -1,11 +1,27 @@
 plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '7.1.0'
-    id 'com.palantir.java-format-spotless' version '2.24.0'
+    id 'com.diffplug.spotless' version '6.7.0'
 }
 
 group = '%%%groupid%%%'
 version = '1.0-SNAPSHOT'
+
+spotless {
+    ratchetFrom 'origin/main'
+
+    format 'misc', {
+        target '*.gradle', '*.md', '.gitignore'
+
+        trimTrailingWhitespace()
+        indentWithSpaces(4)
+        endWithNewline()
+    }
+    java {
+        googleJavaFormat('1.15.0').aosp().reflowLongStrings()
+        licenseHeader '/* (C) $YEAR %%%author%%% */'
+    }
+}
 
 repositories {
     mavenLocal()
